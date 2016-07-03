@@ -1,3 +1,22 @@
+# Program that queries two sensors on my Raspberry Pi:
+# 1) the DS18B20 waterproof temperature sensor connected through the Pi's GPIO
+# 2) the Pi's onboard temperature sensor since the Pi sits outside in the summer heat
+# The data is then sent to InitialState via the ISStreamer package where the data can be viewed
+# over the internet.
+#
+# Author: Dan Behman
+# July 3, 2016
+#
+# Sources:
+#   InitialState streamer:
+#      https://github.com/InitialState/python_appender
+#   W1 Thermal Sensor Python Package by Timo Furrer
+#      https://github.com/timofurrer/w1thermsensor
+#   Interaction with the DS18B20 sensor and Raspberry Pi
+#      https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/software
+#   Similar project done by Mike (h00die)
+#      https://github.com/h00die/poolmonitor
+#
 import subprocess
 import time
 # The W1ThermSensor class constructor of this package will ensure the proper kernel mods are loaded
@@ -13,7 +32,6 @@ delay = 30
 #    W1ThermSensor.DEGREES_C,
 #    W1ThermSensor.DEGREES_F,
 #    W1ThermSensor.KELVIN])
-
 
 def read_pi_temp():
    cat_data = subprocess.Popen( ['cat', pi_temp_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE )
